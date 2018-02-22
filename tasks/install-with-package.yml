@@ -2,6 +2,9 @@
 - name: Install Certbot.
   package: "name={{ certbot_package }} state=present"
 
+- include_tasks: ubuntu1604/install.yml
+  when: (ansible_distribution == 'Ubuntu') and (ansible_distribution_version == '16.04')
+
 - name: Set Certbot script variable.
   set_fact:
     certbot_script: "{{ certbot_package }}"
